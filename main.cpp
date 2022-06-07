@@ -22,7 +22,7 @@ int minDistance (int dist[], bool sptSet[])
 }
 
 // funkcia na printovanie dlziek v poli array
-int printSolution (int dist[], int n)
+void printSolution (int dist[], int n)
 {
   printf ("Vrchol   Vzdialenosť od zdroja \n");
   for (int i = 0; i < V; i++)
@@ -35,12 +35,10 @@ void dijkstra (int graph[V][V], int src)
 {
   int dist[V];			// vystupne pole. dist[i] bude drzat najkratsie vzdialenosti od src po i
 
-
-
   bool sptSet[V];	// sptSet[i] bude pravdive, ak je vrchol i zahrnuty v najkratsom
   // je dokonceny strom cesty alebo najkratsia vzdialenosť od src do i
 
-  // inicializacia vsetkych ciest ako NEKONECNE and stpSet[] ako false
+  // inicializacia vsetkych ciest ako NEKONECNE a stpSet[] ako false
   for (int i = 0; i < V; i++)
     dist[i] = INT_MAX, sptSet[i] = false;
 
@@ -60,12 +58,12 @@ void dijkstra (int graph[V][V], int src)
       // aktualizuje hodnotu vzdialenosti susednych vrcholov vybraneho vrcholu.
       for (int v = 0; v < V; v++)
 
-	// aktualizacia dist[v] iba v prrpade, ze nie je v sptSet, existuje hrana z
-    // u do v a celkova vaha cesty od src do v cez u je
-    // mensia ako aktualna hodnota dist[v]
-	if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX
-	    && dist[u] + graph[u][v] < dist[v])
-	  dist[v] = dist[u] + graph[u][v];
+	    // aktualizacia dist[v] iba v prrpade, ze nie je v sptSet, existuje hrana z
+        // u do v a celkova vaha cesty od src do v cez u je
+        // mensia ako aktualna hodnota dist[v]
+	    if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX
+	        && dist[u] + graph[u][v] < dist[v])
+	    dist[v] = dist[u] + graph[u][v];
     }
 
   // printni zostavene pole vzdialenosti
